@@ -106,14 +106,15 @@ interface RetentionPolicyContract {
   readonly rules: readonly RetentionPolicyRuleEntry[];
 }
 
-// Canonical machine policy (contracts/ is the canonical contract root,
-// AGENTS.md). Resolved repo-relatively from this module — no machine-local
-// path is embedded, and the v1 owner-run CLI executes from source under Bun.
+// Canonical machine policy: the contracts AUTHORITY at the revision pinned
+// in package.json/bun.lock (ADR-0020) — resolved from the pinned git-dep,
+// no machine-local path embedded.
 const RETENTION_CONTRACT_PATH = join(
   import.meta.dir,
   "..",
-  "..",
-  "..",
+  "node_modules",
+  "@libre-ai",
+  "contracts-authority",
   "contracts",
   "data",
   "retention.v1.json",
