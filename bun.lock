@@ -12,6 +12,9 @@
         "@types/bun": "1.3.14",
         "typescript": "7.0.2",
       },
+      "peerDependencies": {
+        "@libre-ai/contracts-authority": "github:libre-ai/contracts#ee144f03cf7d3deeda02a9fcd5e10377c2e99cb4",
+      },
     },
   },
   "overrides": {

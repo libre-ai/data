@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import type { SqlExecutor } from "./adapters/executor";
 import { getRetentionRule } from "./adapters/retention-rules-store";
 import { withTenantRetentionTransaction } from "./adapters/retention-transaction";
@@ -107,17 +107,12 @@ interface RetentionPolicyContract {
 }
 
 // Canonical machine policy: the contracts AUTHORITY at the revision pinned
-// in package.json/bun.lock (ADR-0020) — resolved from the pinned git-dep,
-// no machine-local path embedded.
-const RETENTION_CONTRACT_PATH = join(
-  import.meta.dir,
-  "..",
-  "node_modules",
-  "@libre-ai",
-  "contracts-authority",
-  "contracts",
-  "data",
-  "retention.v1.json",
+// in package.json/bun.lock (ADR-0020). Resolved through module resolution so
+// the lookup also works when this brick is itself an installed git-dep — a
+// literal <package-root>/node_modules path only exists in this repository's
+// own checkout, never under a consumer's nested install.
+const RETENTION_CONTRACT_PATH = fileURLToPath(
+  import.meta.resolve("@libre-ai/contracts-authority/contracts/data/retention.v1.json"),
 );
 
 async function contractDefaultRetentionDays(ruleId: string): Promise<number> {
