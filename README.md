@@ -70,3 +70,19 @@ criteria do not require it.
 `migration-and-deletion-review` as independent passes** (loop-security kernel
 K4: the implementer does not approve its own guardrails), then the layer's
 bootstrap hard stop (ADR-0011 D4) for the owner pronouncement.
+
+## État du projet
+
+<!-- libre-ai:project-status:begin -->
+<!-- Section générée depuis project.v1.yaml — ne pas éditer à la main. -->
+
+- Situation actuelle : Née verte en γ 3.4 ; premier consommateur git-dep (sessions) prouvé en γ 3.5 après le fix de résolution module (338b55e7).
+- Maturité : usable
+- Exposition : spec-published
+- Confiance : medium
+- Preuves vérifiées le : 2026-07-30
+- Avancement : 50 % du périmètre actuellement déclaré
+
+<!-- libre-ai:project-status:end -->
+
+La fiche [`project.v1.yaml`](./project.v1.yaml) est l'autorité de l'état du projet ; cette section en est générée et le gate de flotte échoue si elles divergent.
